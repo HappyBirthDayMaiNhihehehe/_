@@ -76,5 +76,33 @@
 		</div>
 	</div>
 	<script  src="js/index.js"></script>
+    <button id="playButton">Play Music</button>
+    <audio id="birthday-music">
+        <source src="music1.mp3" type="audio/mp3">
+        <source src="music2.mp3" type="audio/mp3">
+        <source src="music3.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        var audioElement = document.getElementById('birthday-music');
+        var playButton = document.getElementById('playButton');
+        var playlist = ['music1.mp3', 'music2.mp3', 'music3.mp3'];  // Danh sách các bài hát
+        var currentTrack = 0;
+
+        // Khi nhấn nút Play, bắt đầu phát nhạc
+        playButton.addEventListener('click', function () {
+            audioElement.src = playlist[currentTrack];  // Set bài hát đầu tiên
+            audioElement.play();  // Phát bài hát
+            playButton.disabled = true; // Vô hiệu hóa nút sau khi bấm
+        });
+
+        // Lắng nghe sự kiện khi một bài hát kết thúc để chuyển sang bài tiếp theo
+        audioElement.addEventListener('ended', function () {
+            currentTrack = (currentTrack + 1) % playlist.length;  // Tính toán bài hát tiếp theo
+            audioElement.src = playlist[currentTrack];  // Đổi bài hát
+            audioElement.play();  // Phát bài hát mới
+        });
+    </script>
 </body>
 </html>
