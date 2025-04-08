@@ -16,6 +16,33 @@
 	<link rel="shortcut icon" href="icon/favicon.ico" type="image/x-icon">
 	<link rel="icon" href="favicon.ico" type="image/x-icon">
 	<link rel="stylesheet" href="css/style.css">
+	<style>
+    .balloon {
+      position: fixed;
+      bottom: -100px;
+      width: 50px;
+      animation: floatUp 6s ease-in-out infinite;
+      z-index: 10;
+      opacity: 0;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh);
+        opacity: 0;
+      }
+    }
+  </style>
 </head>
 <body>
 	<br> <br> <br> <br> <br>
@@ -75,6 +102,7 @@
 			</div>
 		</div>
 	</div>
+					 <img src="img/Balloon-Border.png" width="100%"
 	<script  src="js/index.js"></script>
     <button id="playButton">Play Music</button>
     <audio id="birthday-music">
@@ -87,21 +115,21 @@
     <script>
         var audioElement = document.getElementById('birthday-music');
         var playButton = document.getElementById('playButton');
-        var playlist = ['music1.mp3', 'music2.mp3', 'music3.mp3'];  // Danh sách các bài hát
+        var playlist = ['music1.mp3', 'music2.mp3', 'music3.mp3']; 
         var currentTrack = 0;
 
         // Khi nhấn nút Play, bắt đầu phát nhạc
         playButton.addEventListener('click', function () {
-            audioElement.src = playlist[currentTrack];  // Set bài hát đầu tiên
-            audioElement.play();  // Phát bài hát
-            playButton.disabled = true; // Vô hiệu hóa nút sau khi bấm
+            audioElement.src = playlist[currentTrack];  
+            audioElement.play();  
+            playButton.disabled = true;
         });
 
         // Lắng nghe sự kiện khi một bài hát kết thúc để chuyển sang bài tiếp theo
         audioElement.addEventListener('ended', function () {
-            currentTrack = (currentTrack + 1) % playlist.length;  // Tính toán bài hát tiếp theo
-            audioElement.src = playlist[currentTrack];  // Đổi bài hát
-            audioElement.play();  // Phát bài hát mới
+            currentTrack = (currentTrack + 1) % playlist.length; 
+            audioElement.src = playlist[currentTrack];
+            audioElement.play(); 
         });
     </script>
 </body>
