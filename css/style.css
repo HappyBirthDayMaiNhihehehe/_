@@ -18,7 +18,7 @@ img {
     top: 100%;
     opacity: 0.5;
     z-index: 99999999;
-    animation: floatUp 4s ease-in-out infinite;
+    animation: floatUp 4s ease-in-out forwards;
 }
 #card-front {
   color: #FFDFDF;
