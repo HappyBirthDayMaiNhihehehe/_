@@ -78,33 +78,49 @@
 	</div>
 			 <img src="Balloon-Border.png" width="100%" class="balloon-border">
 	<script  src="js/index.js"></script>
-    <button id="playButton">Play Music</button>
-    <audio id="birthday-music">
-        <source src="music1.mp3" type="audio/mp3">
-        <source src="music2.mp3" type="audio/mp3">
-        <source src="music3.mp3" type="audio/mp3">
-        Your browser does not support the audio element.
-    </audio>
+    <audio id="birthday-music" crossorigin="anonymous"></audio>
+<button id="playButton">Play Music</button>
 
-    <script>
-        var audioElement = document.getElementById('birthday-music');
-        var playButton = document.getElementById('playButton');
-        var playlist = ['music2.mp3', 'music3.mp3', 'music1.mp3']; 
-        var currentTrack = 0;
+<script>
+    const audioElement = document.getElementById('birthday-music');
+    const playButton = document.getElementById('playButton');
+    const playlist = ['music2.mp3', 'music3.mp3', 'music1.mp3'];
+    let currentTrack = 0;
 
-        // Khi nhấn nút Play, bắt đầu phát nhạc
-        playButton.addEventListener('click', function () {
-            audioElement.src = playlist[currentTrack];  
-            audioElement.play();  
-            playButton.disabled = true;
-        });
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    const source = audioContext.createMediaElementSource(audioElement);
+    const analyser = audioContext.createAnalyser();
+    source.connect(analyser);
+    analyser.connect(audioContext.destination);
 
-        // Lắng nghe sự kiện khi một bài hát kết thúc để chuyển sang bài tiếp theo
-        audioElement.addEventListener('ended', function () {
-            currentTrack = (currentTrack + 1) % playlist.length; 
-            audioElement.src = playlist[currentTrack];
-            audioElement.play(); 
-        });
-    </script>
+    const dataArray = new Uint8Array(analyser.frequencyBinCount);
+
+    function animateBackground() {
+        requestAnimationFrame(animateBackground);
+        analyser.getByteFrequencyData(dataArray);
+        const average = dataArray.reduce((a, b) => a + b) / dataArray.length;
+
+        // Tạo màu nền theo volume (cường độ trung bình)
+        const r = Math.min(255, average * 2);
+        const g = Math.min(255, 255 - average);
+        const b = Math.random() * 255;
+        document.body.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+    }
+
+    playButton.addEventListener('click', () => {
+        audioContext.resume(); // cần resume nếu audioContext bị suspend bởi chính sách browser
+        audioElement.src = playlist[currentTrack];
+        audioElement.play();
+        playButton.disabled = true;
+        animateBackground(); // bắt đầu hiệu ứng nền
+    });
+
+    audioElement.addEventListener('ended', () => {
+        currentTrack = (currentTrack + 1) % playlist.length;
+        audioElement.src = playlist[currentTrack];
+        audioElement.play();
+    });
+</script>
+
 </body>
 </html>
