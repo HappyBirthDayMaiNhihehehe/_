@@ -100,7 +100,6 @@
         analyser.getByteFrequencyData(dataArray);
         const average = dataArray.reduce((a, b) => a + b) / dataArray.length;
 
-        // Tạo màu nền theo volume (cường độ trung bình)
         const r = Math.min(255, average * 2);
         const g = Math.min(255, 255 - average);
         const b = Math.random() * 255;
@@ -108,11 +107,11 @@
     }
 
     playButton.addEventListener('click', () => {
-        audioContext.resume(); // cần resume nếu audioContext bị suspend bởi chính sách browser
+        audioContext.resume(); 
         audioElement.src = playlist[currentTrack];
         audioElement.play();
         playButton.disabled = true;
-        animateBackground(); // bắt đầu hiệu ứng nền
+        animateBackground();
     });
 
     audioElement.addEventListener('ended', () => {
