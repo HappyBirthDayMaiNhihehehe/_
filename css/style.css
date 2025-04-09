@@ -33,7 +33,10 @@ body {
 img {
     width: 100%;
 }
-
+.birthday-image {
+    width: 200px;
+    margin-top: 20px;
+    border-radius: 12px;
 .balloon-border {
     position: fixed;
     top: 100%;
