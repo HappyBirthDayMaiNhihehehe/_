@@ -63,7 +63,7 @@ img {
 }
 #playButton {
   position: fixed;
-  bottom: 30px; /* khoảng cách từ đáy màn hình */
+  bottom: 20px; 
   left: 50%;
   transform: translateX(-50%);
   padding: 12px 24px;
