@@ -92,7 +92,7 @@
     const analyser = audioContext.createAnalyser();
     source.connect(analyser);
     analyser.connect(audioContext.destination);
-
+    analyser.fftSize = 128;
     const dataArray = new Uint8Array(analyser.frequencyBinCount);
 
     function animateBackground() {
@@ -100,9 +100,9 @@
         analyser.getByteFrequencyData(dataArray);
         const average = dataArray.reduce((a, b) => a + b) / dataArray.length;
 
-        const r = Math.min(255, average * 2);
-        const g = Math.min(255, 255 - average);
-        const b = Math.random() * 255;
+        const r = Math.min(255, average * 3);
+        const g = Math.min(255, 100 + average * 2);
+        const b = Math.min(255, average * 4);
         document.body.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
     }
 
