@@ -11,25 +11,38 @@ body {
   background-image: url("bg.jpg");
 }
 .disco-lights {
-      position: absolute;
-      top: 0;
-      width: 100%;
-      height: 80px;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      z-index: 3;
-      pointer-events: none;
-    }
+  position: absolute;
+  top: 0;
+  display: flex;
+  gap: 20px;
+  z-index: 3;
+  pointer-events: none;
+}
 
-    .bulb {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      background-color: #fff;
-      box-shadow: 0 0 20px #fff;
-      transition: background-color 0.2s ease, box-shadow 0.2s ease;
-    }
+.disco-lights.left {
+  left: 10px;
+  justify-content: flex-start;
+}
+
+.disco-lights.center {
+  left: 50%;
+  transform: translateX(-50%);
+  justify-content: center;
+}
+
+.disco-lights.right {
+  right: 10px;
+  justify-content: flex-end;
+}
+
+.bulb {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #fff;
+  box-shadow: 0 0 20px #fff;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
 img {
     width: 100%;
 }
