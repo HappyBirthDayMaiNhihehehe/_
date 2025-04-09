@@ -46,8 +46,8 @@
 		<div id="card-inside">
 			<div class="wrap">
 				<center><p class="animated infinite wobble"><b><u>Happy Birthday!</b></u></p><center>
-				<p> Chưa biết ghi j 2 24242 24 24 2 23423 23 4234 2  &nbsp;<i class="em-svg em-blush"></i></p>
-				<p>Khó quá qwe2332e 2e234 2424 242 2 </p>
+				<p> CHÚC MỪNG SINH NHẬT TUỔI 15 NHA  &nbsp;<i class="em-svg em-blush"></i></p>
+				<p>Vì ở xa nên tui chỉ có thể chúc bà qua món quà này thôi.  Mong rằng tuổi mới sẽ mang đến cho ní nhiều niềm vui, thành công hơn hơn nữa</p>
 			        <img src="meo.jpg" alt="Happy Birthday Image" class="birthday-image">
                                 <p class="signed"><u>Made With </b><b> <i class="em-svg em-heart"></i></p>
 			</div>
@@ -132,11 +132,11 @@ analyser.fftSize = 2048;
       analyser.getByteFrequencyData(dataArray);
       const average = dataArray.reduce((a, b) => a + b, 0) / dataArray.length;
 
-      // Đổi màu nền dựa vào âm thanh
+      
       const color = partyColors[Math.floor((average / 256) * partyColors.length)] || "#000000";
       document.body.style.backgroundColor = color;
 
-      // Bóng đèn đổi màu theo frame
+   
       if (frameCount % 10 === 0) {
         bulbs.forEach(bulb => {
           const bulbColor = partyColors[Math.floor(Math.random() * partyColors.length)];
