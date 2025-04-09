@@ -113,18 +113,7 @@ analyser.fftSize = 2048;
       "#D8BFD8", "#ADD8E6", "#FF6347", "#90EE90"
     ];
 
-    const bulbs = [
-      document.getElementById("bulb1"),
-      document.getElementById("bulb2"),
-      document.getElementById("bulb3"),
-      document.getElementById("bulb4"),
-      document.getElementById("bulb5"),
-      document.getElementById("bulb6"),
-      document.getElementById("bulb7"),
-      document.getElementById("bulb8"),
-      document.getElementById("bulb9"),
-      document.getElementById("bulb10"),
-    ];
+    const bulbs = Array.from(document.querySelectorAll(".bulb"));
 
     let frameCount = 0;
 
