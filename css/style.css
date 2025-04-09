@@ -61,7 +61,26 @@ img {
   padding: 1.5em 2.5em;
   height: 100%;
 }
+#playButton {
+  position: fixed;
+  bottom: 30px; /* khoảng cách từ đáy màn hình */
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 24px;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  background-color: #ff69b4;
+  color: white;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
 
+#playButton:hover {
+  background-color: #ff1493;
+}
 #card-front, #card-inside {
   width: 50%;
   -webkit-box-shadow: 2px 2px 30px rgba(0, 0, 0, 0.25), 0 0 1px rgba(0, 0, 0, 0.5);
