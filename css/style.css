@@ -11,30 +11,14 @@ body {
   background-image: url("bg.jpg");
 }
 .disco-lights {
-  position: absolute;
-  top: 0;
-  display: flex;
-  gap: 20px;
-  z-index: 3;
-  pointer-events: none;
-}
-
-.disco-lights.left {
-  left: 10px;
-  justify-content: flex-start;
-}
-
-.disco-lights.center {
-  left: 50%;
-  transform: translateX(-50%);
-  justify-content: center;
-}
-
-.disco-lights.right {
-  right: 10px;
-  justify-content: flex-end;
-}
-
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 999;
+      pointer-events: none;
+    }
 .bulb {
   width: 30px;
   height: 30px;
