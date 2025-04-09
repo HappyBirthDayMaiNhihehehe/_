@@ -9,7 +9,7 @@ body {
   background: #FFDAB9;
   transition: background-color 0.3s ease;
   background-image: url("bg.jpg");
-  background-size: 150px;
+  
 }
 
 .disco-lights {
