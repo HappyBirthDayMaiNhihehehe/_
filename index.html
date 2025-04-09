@@ -89,67 +89,64 @@
 <button id="playButton">Play Music</button>
 
 <script>
-    const audioElement = document.getElementById("birthday-music");
-    const playButton = document.getElementById("playButton");
-    const playlist = ["music2.mp3", "music3.mp3", "music1.mp3"];
+    const audioElement = document.getElementById('birthday-music');
+    const playButton = document.getElementById('playButton');
+    const playlist = ['music2.mp3', 'music3.mp3', 'music1.mp3'];
     let currentTrack = 0;
 
     const audioContext = new (window.AudioContext || window.webkitAudioContext)();
     const source = audioContext.createMediaElementSource(audioElement);
     const analyser = audioContext.createAnalyser();
-    analyser.fftSize = 2048;
-
-    const dataArray = new Uint8Array(analyser.frequencyBinCount);
     source.connect(analyser);
     analyser.connect(audioContext.destination);
 
+    const dataArray = new Uint8Array(analyser.frequencyBinCount);
+
     const partyColors = [
-      "#ff0066", "#00ccff", "#ffff00", "#00ff80", "#cc00ff"
+      "#ff0055", "#00ffff", "#00ff00", "#ffcc00",
+      "#ff00ff", "#0099ff", "#ff6600", "#33ff99"
     ];
 
-    let colorIndex = 0;
-    let frameCount = 0;
-    let lastFlashTime = 0;
+    const bulbs = [
+      document.getElementById("bulb1"),
+      document.getElementById("bulb2"),
+      document.getElementById("bulb3"),
+      document.getElementById("bulb4"),
+      document.getElementById("bulb5")
+    ];
 
-    function flashBody() {
-      document.body.style.transition = "none";
-      document.body.style.backgroundColor = "#ffffff";
-      setTimeout(() => {
-        document.body.style.transition = "background-color 0.3s ease";
-        document.body.style.backgroundColor = partyColors[colorIndex];
-      }, 50);
-    }
+    let frameCount = 0;
 
     function animateBackground() {
       requestAnimationFrame(animateBackground);
       analyser.getByteFrequencyData(dataArray);
-
       const average = dataArray.reduce((a, b) => a + b, 0) / dataArray.length;
 
-      // Chuyển màu mượt
-      if (average > 40 && frameCount % 10 === 0) {
-        colorIndex = (colorIndex + 1) % partyColors.length;
-        document.body.style.backgroundColor = partyColors[colorIndex];
-      }
+      // Đổi màu nền dựa vào âm thanh
+      const color = partyColors[Math.floor((average / 256) * partyColors.length)] || "#000000";
+      document.body.style.backgroundColor = color;
 
-      // Beat mạnh thì nhấp nháy trắng
-      if (average > 120 && performance.now() - lastFlashTime > 200) {
-        flashBody();
-        lastFlashTime = performance.now();
+      // Bóng đèn đổi màu theo frame
+      if (frameCount % 5 === 0) {
+        bulbs.forEach(bulb => {
+          const bulbColor = partyColors[Math.floor(Math.random() * partyColors.length)];
+          bulb.style.backgroundColor = bulbColor;
+          bulb.style.boxShadow = `0 0 20px ${bulbColor}`;
+        });
       }
 
       frameCount++;
     }
 
-    playButton.addEventListener("click", () => {
-      audioContext.resume();
+    playButton.addEventListener('click', () => {
+      audioContext.resume(); 
       audioElement.src = playlist[currentTrack];
       audioElement.play();
       playButton.disabled = true;
       animateBackground();
     });
 
-    audioElement.addEventListener("ended", () => {
+    audioElement.addEventListener('ended', () => {
       currentTrack = (currentTrack + 1) % playlist.length;
       audioElement.src = playlist[currentTrack];
       audioElement.play();
