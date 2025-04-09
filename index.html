@@ -19,17 +19,57 @@
 	
 </head>
 <body>
-	<div class="disco-lights left">
-  <div class="bulb" id="bulb1"></div>
-</div>
-<div class="disco-lights center">
-  <div class="bulb" id="bulb2"></div>
-  <div class="bulb" id="bulb3"></div>
-</div>
-<div class="disco-lights right">
-  <div class="bulb" id="bulb4"></div>
-  <div class="bulb" id="bulb5"></div>
-</div>
+	<div class="disco-lights"></div>
+
+  <script>
+    const discoContainer = document.querySelector('.disco-lights');
+    const bulbCountTop = 30;
+    const bulbCountSide = 15;
+    const bulbs = [];
+
+    // Colors for animation
+    const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff', '#ffffff'];
+
+    // Top edge
+    for (let i = 0; i < bulbCountTop; i++) {
+      const bulb = document.createElement('div');
+      bulb.classList.add('bulb');
+      bulb.style.top = '0px';
+      bulb.style.left = `${(i / bulbCountTop) * 100}vw`;
+      discoContainer.appendChild(bulb);
+      bulbs.push(bulb);
+    }
+
+    // Left edge
+    for (let i = 0; i < bulbCountSide; i++) {
+      const bulb = document.createElement('div');
+      bulb.classList.add('bulb');
+      bulb.style.left = '0px';
+      bulb.style.top = `${(i / bulbCountSide) * 100}vh`;
+      discoContainer.appendChild(bulb);
+      bulbs.push(bulb);
+    }
+
+    // Right edge
+    for (let i = 0; i < bulbCountSide; i++) {
+      const bulb = document.createElement('div');
+      bulb.classList.add('bulb');
+      bulb.style.right = '0px';
+      bulb.style.left = 'unset';
+      bulb.style.top = `${(i / bulbCountSide) * 100}vh`;
+      discoContainer.appendChild(bulb);
+      bulbs.push(bulb);
+    }
+
+    // Animation loop
+    setInterval(() => {
+      bulbs.forEach((bulb, index) => {
+        const color = colors[(index + Date.now() / 100) % colors.length | 0];
+        bulb.style.backgroundColor = color;
+        bulb.style.boxShadow = `0 0 15px ${color}`;
+      });
+    }, 200);
+  </script>
 
 	<br> <br> <br> <br> <br>
 	<div id="card">
