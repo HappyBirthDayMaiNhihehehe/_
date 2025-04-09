@@ -128,7 +128,7 @@ analyser.fftSize = 2048;
       document.body.style.backgroundColor = color;
 
       // Bóng đèn đổi màu theo frame
-      if (frameCount % 5 === 0) {
+      if (frameCount % 10 === 0) {
         bulbs.forEach(bulb => {
           const bulbColor = partyColors[Math.floor(Math.random() * partyColors.length)];
           bulb.style.backgroundColor = bulbColor;
