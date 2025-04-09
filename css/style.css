@@ -36,11 +36,18 @@ img {
     width: 100%;
 }
 .birthday-image {
-   width: 80%;
+  width: 80%;
   max-width: 300px;
   margin: 4px auto;
   border-radius: 12px;
   display: block;
+  transform: rotate(-2deg); 
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.birthday-image:hover {
+  transform: rotate(1deg) scale(1.02); 
 }
 .balloon-border {
     position: fixed;
