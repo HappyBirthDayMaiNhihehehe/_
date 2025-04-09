@@ -38,6 +38,7 @@ img {
   max-width: 300px;
   margin: 20px auto;
   border-radius: 12px;
+  display: block;
 }
 .balloon-border {
     position: fixed;
