@@ -115,7 +115,7 @@
     const analyser = audioContext.createAnalyser();
     source.connect(analyser);
     analyser.connect(audioContext.destination);
-analyser.fftSize = 2048;
+analyser.fftSize = 1024;
     const dataArray = new Uint8Array(analyser.frequencyBinCount);
 
     const partyColors = [
