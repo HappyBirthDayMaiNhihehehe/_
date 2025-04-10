@@ -6,11 +6,13 @@
 }
 
 body {
-  background: #FFDAB9;
-  transition: background-color 0.3s ease;
+  background-color: #FFDAB9;
   background-image: url("bg1.jpg");
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: center center;
+  background-size: auto;
+  height: 100vh;
+  margin: 0;
 }
 
 .disco-lights {
